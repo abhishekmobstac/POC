@@ -45,7 +45,7 @@ app.post('/users/login', (req, res) => {
 app.post('/users/register', async (req, res) => {
   const { name, email, password } = req.body;
   // res.render('register');
-
+  console.log(req.body);
   if (!name || !email || !password) {
     res
       .status(400)

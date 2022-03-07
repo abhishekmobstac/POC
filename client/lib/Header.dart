@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
+  String headerText;
+
+  Header(this.headerText);
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
+        children: <Widget>[
           Center(
             child: Text(
-              "Login",
-              style: TextStyle(color: Colors.white, fontSize: 40),
+              headerText,
+              style: const TextStyle(color: Colors.white, fontSize: 40),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Center(
+          const Center(
             child: Text(
               "Welcome to Mobstac",
               style: TextStyle(color: Colors.white, fontSize: 18),
