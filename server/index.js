@@ -51,6 +51,7 @@ app.post('/users/register', async (req, res) => {
     res
       .status(400)
       .json({ message: 'Please enter all the fields', statusCode: 400 });
+      return;
   }
 
   pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {

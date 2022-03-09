@@ -1,9 +1,10 @@
 import 'package:client/dashboard_page.dart';
+import 'package:client/utils/user_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-// import 'package:flutter_session/flutter_session.dart';
-import 'package:flutter_session/flutter_session.dart';
 
 import 'package:client/register_page.dart';
 import 'package:client/user.dart';
@@ -89,12 +90,37 @@ class _InputFieldState extends State<InputField> {
       // print(userData['statusCode']);
       // print(response.statusCode);
       if (response.statusCode == 200) {
-        await FlutterSession().set("user", response);
+        List<String> userVal = [userData['name'], userData['email']];
+      
+        await UserSecureStorage.setUserdata(userVal);
+        Fluttertoast.showToast(
+            msg: "Login Successfull!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    Dashboard(userData['name'], userData['email'])));
+            context, MaterialPageRoute(builder: (context) => Dashboard()));
+      } else if (response.statusCode == 401) {
+        Fluttertoast.showToast(
+            msg: "Incorrect password",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else if (response.statusCode == 404) {
+        Fluttertoast.showToast(
+            msg: "User not found",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     } catch (e) {
       print(e);

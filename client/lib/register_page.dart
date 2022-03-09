@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:client/user.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import './header_page.dart';
@@ -100,8 +101,34 @@ class _InputFieldState extends State<InputField> {
       // print(userData['statusCode']);
       // print(response.statusCode);
       if (response.statusCode == 200) {
+        Fluttertoast.showToast(
+            msg: "Register Successful!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));
+      } else if (response.statusCode == 400) {
+        Fluttertoast.showToast(
+            msg: "Please enter all the fields!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else if (response.statusCode == 409) {
+        Fluttertoast.showToast(
+            msg: "User Already Exist!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     } catch (e) {
       print(e);
@@ -161,6 +188,17 @@ class _InputFieldState extends State<InputField> {
           height: 20,
         ),
         ElevatedButton(onPressed: signUp, child: const Text("Register")),
+        const SizedBox(
+          height: 10,
+        ),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterPage()));
+            },
+            child: const Text("Login")),
       ],
     );
   }
