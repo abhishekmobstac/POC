@@ -1,10 +1,11 @@
+import 'package:client/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:client/user.dart';
 import 'package:http/http.dart' as http;
 
-import 'header.dart';
+import './header_page.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -98,6 +99,10 @@ class _InputFieldState extends State<InputField> {
       print(userData['message']);
       // print(userData['statusCode']);
       // print(response.statusCode);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
+      }
     } catch (e) {
       print(e);
     }

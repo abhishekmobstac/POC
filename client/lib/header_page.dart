@@ -14,7 +14,10 @@ class Header extends StatelessWidget {
           Center(
             child: Text(
               headerText,
-              style: const TextStyle(color: Colors.white, fontSize: 40),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(

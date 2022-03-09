@@ -1,11 +1,14 @@
+import 'package:client/dashboard_page.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
+// import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 import 'package:client/register_page.dart';
 import 'package:client/user.dart';
-import 'package:http/http.dart' as http;
 
-import 'header.dart';
+import './header_page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -85,6 +88,14 @@ class _InputFieldState extends State<InputField> {
       // print(userData['message']);
       // print(userData['statusCode']);
       // print(response.statusCode);
+      if (response.statusCode == 200) {
+        await FlutterSession().set("user", response);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Dashboard(userData['name'], userData['email'])));
+      }
     } catch (e) {
       print(e);
     }
@@ -134,7 +145,7 @@ class _InputFieldState extends State<InputField> {
         InkWell(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => RegisterPage()));
+                MaterialPageRoute(builder: (context) => const RegisterPage()));
           },
           child: const Text(
             "Register",

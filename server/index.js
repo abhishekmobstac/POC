@@ -22,7 +22,8 @@ app.post('/users/login', (req, res) => {
         if (results.rows[0].password === password) {
           res.status(200).json({
             message: 'Login successful',
-            user: results.rows[0].email,
+            name:results.rows[0].name,
+            email: results.rows[0].email,
             statusCode: 200,
           });
         } else {
