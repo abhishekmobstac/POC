@@ -1,7 +1,6 @@
 import 'package:client/dashboard_page.dart';
 import 'package:client/utils/user_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

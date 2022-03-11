@@ -1,22 +1,9 @@
-import 'package:client/about_page.dart';
-import 'package:client/login_page.dart';
-import 'package:client/utils/user_data.dart';
+import 'package:client/header_page.dart';
 import 'package:flutter/material.dart';
 
-import './header_page.dart';
+class AboutPage extends StatelessWidget {
+  const AboutPage({Key? key}) : super(key: key);
 
-class Dashboard extends StatefulWidget {
-  @override
-  State<Dashboard> createState() => _DashboardState();
-}
-
-class _DashboardState extends State<Dashboard> {
-  Future logout() async {
-    print("logout");
-    await UserSecureStorage.deleteUserdata();
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +19,7 @@ class _DashboardState extends State<Dashboard> {
             const SizedBox(
               height: 40,
             ),
-            Header("Dashboard"),
+            Header("About Page"),
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20.0),
@@ -47,16 +34,6 @@ class _DashboardState extends State<Dashboard> {
             const SizedBox(
               height: 40,
             ),
-            ElevatedButton(onPressed: logout, child: Text("Logout")),
-            const SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutPage()));
-                },
-                child: Text("About"))
           ],
         ),
       ),

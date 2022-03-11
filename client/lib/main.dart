@@ -1,26 +1,24 @@
-import 'dart:convert';
-
 import 'package:client/dashboard_page.dart';
 import 'package:client/utils/user_data.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 
-Future main() async {
-  // dynamic token = FlutterSession().get('token');
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final userValue = await UserSecureStorage.getUserdata() ?? "";
-  // var value = json.decode(userValue.toString());
-  // print(userValue.toString());
-  runApp(MyApp());
+  final userValue = await UserSecureStorage.getUserdata() ?? "";
+  print(userValue);
+  runApp(MyApp(userValue.toString()));
 }
 
 class MyApp extends StatelessWidget {
+  final String userValue;
+  MyApp(this.userValue);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: userValue == "" ? LoginPage() : Dashboard(),
     );
   }
 }
