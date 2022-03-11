@@ -17,6 +17,22 @@ class _DashboardState extends State<Dashboard> {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
+
+  String userName = "No user", userEmail = "No email";
+  getUserData() async {
+    var userData = await UserSecureStorage.getUserdata();
+    setState(() {
+      userName = userData![0];
+      userEmail = userData[1];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +58,10 @@ class _DashboardState extends State<Dashboard> {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   )),
-              child: Text("Hello"),
+              child: Text(
+                "Hello " + userName + " and your user email is " + userEmail,
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(
               height: 40,
