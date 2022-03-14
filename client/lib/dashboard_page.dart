@@ -59,8 +59,15 @@ class _DashboardState extends State<Dashboard> {
                     topRight: Radius.circular(10),
                   )),
               child: Text(
-                "Hello " + userName + " and your user email is " + userEmail,
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                "Hello " +
+                    userName +
+                    " and your user email is " +
+                    userEmail +
+                    ".",
+                style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black26),
               ),
             ),
             const SizedBox(
@@ -72,8 +79,11 @@ class _DashboardState extends State<Dashboard> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AboutPage(
+                              userName: userName, userEmail: userEmail)));
                 },
                 child: Text("About"))
           ],

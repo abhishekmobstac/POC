@@ -64,13 +64,6 @@ class InputWrapper extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          const Text(
-            "Forgot Password?",
-            style: TextStyle(color: Colors.grey),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
           // Button()
         ],
       ),
@@ -193,10 +186,8 @@ class _InputFieldState extends State<InputField> {
         ),
         ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             },
             child: const Text("Login")),
       ],

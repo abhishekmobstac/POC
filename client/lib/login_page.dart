@@ -90,7 +90,7 @@ class _InputFieldState extends State<InputField> {
       // print(response.statusCode);
       if (response.statusCode == 200) {
         List<String> userVal = [userData['name'], userData['email']];
-      
+
         await UserSecureStorage.setUserdata(userVal);
         Fluttertoast.showToast(
             msg: "Login Successfull!",
@@ -114,6 +114,15 @@ class _InputFieldState extends State<InputField> {
       } else if (response.statusCode == 404) {
         Fluttertoast.showToast(
             msg: "User not found",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else if (response.statusCode == 400) {
+        Fluttertoast.showToast(
+            msg: "Please enter all the fields",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 2,

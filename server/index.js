@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: false })); // req.query
 // login the user
 app.post('/users/login', (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(400).json({ message: 'Please enter all fields' });
   pool.query(
     'SELECT * FROM users WHERE email = $1',
     [email],
@@ -22,7 +24,7 @@ app.post('/users/login', (req, res) => {
         if (results.rows[0].password === password) {
           res.status(200).json({
             message: 'Login successful',
-            name:results.rows[0].name,
+            name: results.rows[0].name,
             email: results.rows[0].email,
             statusCode: 200,
           });
@@ -51,7 +53,7 @@ app.post('/users/register', async (req, res) => {
     res
       .status(400)
       .json({ message: 'Please enter all the fields', statusCode: 400 });
-      return;
+    return;
   }
 
   pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
