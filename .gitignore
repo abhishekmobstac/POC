@@ -1,2 +1,2 @@
-auth0/node_modules
-server/node_modules
+/auth0/*node_modules
+/server/*node_modules

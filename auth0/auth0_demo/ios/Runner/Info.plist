@@ -9,14 +9,14 @@
          <string>Editor</string>
          <key>CFBundleURLSchemes</key>
          <array>
-            <string>com.auth0.flutterdemo</string>
+            <string>com.example.auth0_demo</string>
          </array>
       </dict>
     </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Flutterdemo</string>
+	<string>Auth0 Demo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,7 +24,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>flutterdemo</string>
+	<string>auth0_demo</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

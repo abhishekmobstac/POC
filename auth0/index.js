@@ -17,8 +17,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
-  console.log(JSON.stringify(req.oidc.user));
-  res.send(JSON.stringify(req.oidc.user));
+  // console.log(JSON.stringify(req.oidc.user));
+  // localStorage.setItem('user', JSON.stringify(req.oidc.user));
+  res.send(req.oidc.user);
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
